@@ -1,0 +1,28 @@
+{
+  "name": "vuejs-monster-game",
+  "version": "0.0.1",
+  "description": "An application for study purposes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "esw src --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandrevribeiro/vuejs-monster-game.git"
+  },
+  "author": "Alexandre Ribeiro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexandrevribeiro/vuejs-monster-game/issues"
+  },
+  "homepage": "https://github.com/alexandrevribeiro/vuejs-monster-game#readme",
+  "dependencies": {
+    "express-app-runner": "^2.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-watch": "^3.1.0"
+  }
+}
