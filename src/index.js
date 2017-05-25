@@ -1,4 +1,4 @@
-var runner = require('express-app-runner');
+import * as runner from 'express-app-runner';
 
 runner.routeHomepageToFile('./index.html');
 runner.addStaticDir('./css', '/css');
