@@ -7,23 +7,41 @@ new Vue({
     },
     methods: {
         startGame: function() {
-            this.gameIsRunning = true;
-            this.playerHealth = 100;
-            this.monsterHealth = 100;
+            this.reset();
+            this.gameIsRunning = true;            
         },
         attack: function() {
             this.monsterHealth -=  this.calculateDamage(3, 10);            
             if (this.checkWin())
                 return;
 
-            this.playerHealth -=  this.calculateDamage(5, 12);
-            this.checkWin();
+            this.monsterAttacks();
         },
         specialAttack: function() {
+            this.monsterHealth -=  this.calculateDamage(20, 20);
+            if (this.checkWin())
+                return;
+            this.monsterAttacks();
         },
         heal: function() {
+            if (this.playerHealth <= 10) {
+                this.playerHealth += 10;
+            } else {
+                this.playerHealth = 100;
+            }
+            this.monsterAttacks();
         },
         giveUp: function() {
+            this.gameIsRunning = false;
+            this.reset();
+        },
+        reset: function() {
+            this.playerHealth = 100;
+            this.monsterHealth = 100;
+        },
+        monsterAttacks: function() {
+            this.playerHealth -=  this.calculateDamage(5, 12);
+            this.checkWin();
         },
         calculateDamage: function(min, max) {
             return Math.max(Math.floor(Math.random() * max) + 1, min);         
@@ -33,15 +51,18 @@ new Vue({
                 if (confirm('You won! New game?')) {
                     this.startGame();
                 } else {
-                    this.gameIsRunning = false;
+                    this.giveUp();
                 }
+                return true;
             } else if (this.playerHealth <= 0) {
                 if (confirm('You lost! New game?')) {
                     this.startGame();
                 } else {
-                    this.gameIsRunning = false;
+                    this.giveUp();
                 }
+                return true;
             }
+            return false;
         }
     }
 });
